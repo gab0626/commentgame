@@ -8,7 +8,7 @@ class Bomb : public ItemBase
 public:
 
 	Bomb();
-	Bomb(Vec2f _pos, Vec2f _size);
+	Bomb(Vec2f _pos, Vec2f _size, Vec2f vec);
 	~Bomb();
 
 	void update() override;

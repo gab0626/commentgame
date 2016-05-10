@@ -27,8 +27,8 @@ Bomb::Bomb() :
 
 }
 
-Bomb::Bomb(Vec2f _pos, Vec2f _size) :
-	ItemBase(Vec2f::Zero(), Vec2f::Zero()),
+Bomb::Bomb(Vec2f _pos, Vec2f _size, Vec2f vec) :
+	ItemBase(Vec2f::Zero(), Vec2f::Zero(), vec),
 	explosion_count(600),
 	animation_count(0),
 	is_countdown(false),

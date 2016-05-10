@@ -1,5 +1,6 @@
 #pragma once
-#include "../ItemBase.h"
+#include "Arrow/Arrow.h"
+
 
 
 class Bow : public ItemBase
@@ -15,5 +16,13 @@ public:
 
 private:
 
+	void drawTheBow();
+	void shootTheBow();
+	void changeAngle();
 
+	std::list<Arrow> arrows;
+	int max_arrow_num;
+	float max_arrow_vec;
+	Vec2f arrow_vec;
+	float rad;
 };

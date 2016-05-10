@@ -14,7 +14,7 @@ public:
 	};
 	virtual void draw() = 0;
 	virtual void update() = 0;
-
+	virtual void addpos(Vec2f);
 	WritableP<Vec2f> vec;
 protected:
 	Vec2f vec_;

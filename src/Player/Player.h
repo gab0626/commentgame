@@ -16,6 +16,7 @@ public:
 	Vec2f getSize();
 
 private:
+
 	void move();
 
 };

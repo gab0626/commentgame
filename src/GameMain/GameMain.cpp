@@ -3,25 +3,32 @@
 
 GameMain::GameMain()
 {
-	P_Manager.createPlayer("res/stage/stage1/Player.txt");
-	map.Load(1);
+	int _stage_num = 10;
+	P_Manager.createPlayer("res/stage/stage" + std::to_string(_stage_num) + "/Player.txt");
+	map.Load(_stage_num);
+}
+
+GameMain::~GameMain()
+{
+	Easing::Clear();
 }
 
 void GameMain::update()
 {
-	camera_pos = GetPlayer->getPos();
-	
-	GetPlayer->vec =  map.collision(GetPlayer->getPos(), GetPlayer->getSize(), GetPlayer->vec);
-	
-	
-	
-	
-	
-	GetPlayer->update();
 	map.update();
 	ui.update();
 	enemyholder.update();
-	comment.update();
+	GetPlayer->update();
+
+
+	GetPlayer->addpos(map.collision(GetPlayer->getPos(), GetPlayer->getSize(), GetPlayer->vec));
+	camera_pos = GetPlayer->getPos();
+
+
+	if (env.isPushButton(Mouse::RIGHT)) {
+		map.breakBlock(GetPlayer->getPos());
+	}
+
 }
 
 void GameMain::draw()
@@ -29,12 +36,15 @@ void GameMain::draw()
 	glPushMatrix();
 	glTranslated(-camera_pos.x(), -camera_pos.y(), 0);
 	map.draw();
-	ui.draw();
 	enemyholder.draw();
-	comment.draw();
-	drawFillBox(0, 0, 100, 100, Color::blue);
 	GetPlayer->draw();
+	Vec2f a;
+	a = GetPlayer->getPos();
+	drawPoint(a.x(), a.y(), 100, Color::white);
+
 	glPopMatrix();
+
+	ui.draw();
 }
 
 void GameMain::shift()
